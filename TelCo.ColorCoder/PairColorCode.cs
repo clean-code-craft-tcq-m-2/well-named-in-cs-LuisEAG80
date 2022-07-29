@@ -49,5 +49,21 @@ namespace TelCo.ColorCoder
             // (Note: +1 in compute is because pair number is 1 based, not zero)
             return ((int)(pair.MajorColor) * minorSize) + ((int)(pair.MinorColor)) + 1;
         }
+
+        internal static void PrintManual()
+        {
+            var minorSize = Enum.GetNames(typeof(MinorColor)).Length;
+            var majorSize = Enum.GetNames(typeof(MajorColor)).Length;
+            Console.WriteLine("|--------------------------------------|");
+            Console.WriteLine("| Pair no. | Major color | Minor color |");
+            Console.WriteLine("|--------------------------------------|");
+
+            for (int i = 1; i <= (minorSize * majorSize); i++)
+            {
+                ColorPair colorPair = PairColorCode.GetColorFromPairNumber(i);
+                Console.WriteLine(String.Format("| {0,8} | {1,10}  | {2,10}  |", i, colorPair.MajorColor, colorPair.MinorColor));
+            }
+            Console.WriteLine("|--------------------------------------|");
+        }
     }
 }
